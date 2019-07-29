@@ -612,230 +612,7 @@ $updateShow = '';
                 </div>
 
             </div>
-            <div id="updateStock" class="col s12">
-                <div class="col s12 m12">
-                    <div class="card-panel  pink">
-                        <span class="white-text" style="text-align: center">
-                            <h5><strong>UPDATE STOCK</strong></h5>
-                        </span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s12 m12">
-                        <div class="card-panel">
-                            <span style="text-align: center">
-                                <h6><strong>UPDATE STOCK</strong></h6>
-                                <div class="divider"></div>
-                            </span>
-                            <div class="row">
-                                <div class="input-field col m6 offset-m3">
-                                    <input type="text" class="datepicker">
-                                    <label for="updateDate">Date</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="input-field col s6">
-                                    <input id="updateProductName" type="text" class="validate">
-                                    <label for="updateProductName">Product Name</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input id="updateOldProduct" type="number" class="validate">
-                                    <label for="updateOldProduct">Old Price</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="input-field col s6">
-                                    <input id="updateNewPrice" type="number" class="validate">
-                                    <label for="updateNewPrice">New Price</label>
-                                </div>
-                                <!-- <div class="input-field col s6">
-                                <input id="updateSellingPrice" type="number" class="validate">
-                                <label for="updateSellingPrice">Selling Price</label>
-                            </div> -->
-                            </div>
-                            <div align="center">
-                                <button class="btn waves-effect waves-light" type="submit" name="action">Update Price
-                                    <i class="material-icons right">send</i>
-                                </button>
-                            </div>
 
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-            <div id="checkStock" class="col s12">
-                <div class="col s12 m12">
-                    <div class="card-panel  pink">
-                        <span class="white-text" style="text-align: center">
-                            <h5><strong>CHECK STOCK</strong></h5>
-                        </span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s12 m12">
-                        <div class="card-panel">
-                            <span style="text-align: center">
-                                <h6><strong>ALL STOCK</strong></h6>
-                                <div class="divider"></div>
-                            </span>
-                            <div class="row">
-                                <div class="input-field col m6 offset-m3">
-                                    <input type="text" class="datepicker">
-                                    <label for="updateDate">Check by Date</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <table class="responsive-table">
-                                    <thead>
-                                        <tr>
-                                            <th>s/n</th>
-                                            <th>Product Name</th>
-                                            <th>Quantity Sold</th>
-                                            <th>Selling price</th>
-                                            <th>Total</th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Malt</td>
-                                            <td>25</td>
-                                            <td>23</td>
-                                            <td>2</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Fanta</td>
-                                            <td>25</td>
-                                            <td>20</td>
-                                            <td>5</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Sprite</td>
-                                            <td>25</td>
-                                            <td>0</td>
-                                            <td>0</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-            <div id="settings" class="col s12">
-                <div class="col s12 m12">
-                    <div class="card-panel  pink">
-                        <span class="white-text" style="text-align: center">
-                            <h5><strong>SETTINGS</strong></h5>
-                        </span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s12 m12">
-                        <div class="card-panel">
-                            <!-- <span style="text-align: center">
-                            <h6><strong></strong></h6>
-                            <div class="divider"></div>
-                        </span> -->
-                            <div class="row">
-                                <div class="col m6">
-                                    <div class="row">
-                                        <div class="col s12 m12">
-                                            <div class="card-panel">
-                                                <div align="center">Create A room</div>
-                                                <div class="divider"></div>
-                                                <div class="row">
-                                                    <div class="input-field col s6">
-                                                        <input id="setRoomNumber" name="setRoomNumber" type="text"
-                                                            class="validate">
-                                                        <label for="setRoomNumber">Room Number</label>
-                                                    </div>
-                                                    <div class="input-field col s6">
-                                                        <input id="setRoomPrice" name="setRoomPrice" type="number"
-                                                            class="validate">
-                                                        <label for="setRoomPrice">Price</label>
-                                                    </div>
-                                                    <div align="center">
-                                                        <button class="btn waves-effect waves-light" type="button"
-                                                            id="createRoomBtn" name="createRoomBtn"
-                                                            value="createRoomBtn">Create room
-                                                            <i class="material-icons right">send</i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-
-                                </div>
-                                <div class="col m6">
-                                    <div class="row">
-                                        <div class="col s12 m12">
-                                            <div class="card-panel">
-                                                <div align="center">Update Room Price</div>
-                                                <div class="divider"></div>
-                                                <div class="row">
-                                                    <div class="input-field col s6">
-                                                        <select id="updateRoomNumber" name="updateRoomNumber">
-
-                                                            <option>Select a room</option>
-                                                            <?php
-                                                            $updateRoomSQL = "SELECT * FROM room";
-                                                            $updateRoomResult = mysqli_query($conn, $updateRoomSQL);
-                                                            $numRoll = mysqli_num_rows($updateRoomResult) > 0;
-                                                            if ($numRoll) {
-                                                                while ($updatePriceRow = mysqli_fetch_array($updateRoomResult)) {
-                                                                    $updateShow .= '
-                                                                <option value="' . $updatePriceRow['roomNumber'] . '">' . $updatePriceRow['roomNumber'] . '</option> ';
-                                                                }
-                                                            } else {
-                                                                $updateShow .= 'No room Created Yet';
-                                                            }
-                                                            ?>
-
-                                                            <?php echo $updateShow; ?>
-
-                                                        </select>
-                                                        <label for="updateRoomNumber">Room Number</label>
-                                                    </div>
-                                                    <div class="input-field col s6">
-                                                        <input id="updateRoomPrice" name="updateRoomPrice" type="number"
-                                                            class="validate">
-                                                        <!-- <label for="updateRoomPrice">Price</label> -->
-                                                    </div>
-                                                    <div align="center">
-                                                        <button class="btn waves-effect waves-light" type="button"
-                                                            id="updateRoomPriceBTN" name="updateRoomPriceBTN"
-                                                            value="updateRoomPriceBTN">Update Room Price
-                                                            <i class="material-icons right">send</i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                fhjghfh
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
         </div>
         <!--====================================================================================================== 
                                                  UPDATE STOCK 
@@ -922,56 +699,106 @@ $updateShow = '';
             </div>
 
         </div>
-        <!--======================================================================================================
-                                                 CHECK STOCK 
-        ======================================================================================================-->
-        <div id="checkStock" class="col s12">
+
+
+        <!-- =======================================================================
+                            ORIGINAL SETTINGS
+        =========================================================================== -->
+        <div id="settings" class="col s12">
             <div class="col s12 m12">
                 <div class="card-panel  pink">
                     <span class="white-text" style="text-align: center">
-                        <h5><strong>CHECK STOCKS</strong></h5>
+                        <h5><strong>ORIGINAL SETTINGS</strong></h5>
                     </span>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col s12 m12">
                     <div class="card-panel">
-                        <span style="text-align: center">
-                            <h6><strong>ADD STOCK</strong></h6>
+                        <!-- <span style="text-align: center">
+                            <h6><strong></strong></h6>
                             <div class="divider"></div>
-                        </span>
+                        </span> -->
                         <div class="row">
-                            <div class="input-field col m6 offset-m3">
-                                <input type="text" id="stockDate" name="stockDate" class="datepicker">
-                                <label for="stockDate">Date</label>
+                            <div class="col m6">
+                                <div class="row">
+                                    <div class="col s12 m12">
+                                        <div class="card-panel">
+                                            <div align="center">Create A room</div>
+                                            <div class="divider"></div>
+                                            <div class="row">
+                                                <div class="input-field col s6">
+                                                    <input id="setRoomNumber" name="setRoomNumber" type="text"
+                                                        class="validate">
+                                                    <label for="setRoomNumber">Room Number</label>
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    <input id="setRoomPrice" name="setRoomPrice" type="number"
+                                                        class="validate">
+                                                    <label for="setRoomPrice">Price</label>
+                                                </div>
+                                                <div align="center">
+                                                    <button class="btn waves-effect waves-light" type="button"
+                                                        id="createRoomBtn" name="createRoomBtn"
+                                                        value="createRoomBtn">Create room
+                                                        <i class="material-icons right">send</i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col m6">
+                                <div class="row">
+                                    <div class="col s12 m12">
+                                        <div class="card-panel">
+                                            <div align="center">Update Room Price</div>
+                                            <div class="divider"></div>
+                                            <div class="row">
+                                                <div class="input-field col s6">
+                                                    <select id="updateRoomNumber" name="updateRoomNumber">
+
+                                                        <option>Select a room</option>
+                                                        <?php
+                                                        $updateRoomSQL = "SELECT * FROM room";
+                                                        $updateRoomResult = mysqli_query($conn, $updateRoomSQL);
+                                                        $numRoll = mysqli_num_rows($updateRoomResult) > 0;
+                                                        if ($numRoll) {
+                                                            while ($updatePriceRow = mysqli_fetch_array($updateRoomResult)) {
+                                                                $updateShow .= '
+                                                                <option value="' . $updatePriceRow['roomNumber'] . '">' . $updatePriceRow['roomNumber'] . '</option> ';
+                                                            }
+                                                        } else {
+                                                            $updateShow .= 'No room Created Yet';
+                                                        }
+                                                        ?>
+
+                                                        <?php echo $updateShow; ?>
+
+                                                    </select>
+                                                    <label for="updateRoomNumber">Room Number</label>
+                                                </div>
+                                                <div class="input-field col s6">
+                                                    <input id="updateRoomPrice" name="updateRoomPrice" type="number"
+                                                        class="validate">
+                                                    <!-- <label for="updateRoomPrice">Price</label> -->
+                                                </div>
+                                                <div align="center">
+                                                    <button class="btn waves-effect waves-light" type="button"
+                                                        id="updateRoomPriceBTN" name="updateRoomPriceBTN"
+                                                        value="updateRoomPriceBTN">Update Room Price
+                                                        <i class="material-icons right">send</i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="input-field col s6">
-                                <input id="stockProductName" name="stockProductName" type="text" class="validate">
-                                <label for="stockProductName">Product Name</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input id="stockQuantity" name="stockQuantity" type="text" class="validate">
-                                <label for="stockQuantity">Quantity</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <input id="stockCostPrice" name="stockCostPrice" type="number" class="validate">
-                                <label for="stockCostPrice">Cost Price</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input id="stockSellingPrice" name="stockSellingPrice" type="number" class="validate">
-                                <label for="stockSellingPrice">Selling Price</label>
-                            </div>
-                        </div>
-                        <div align="center">
-                            <button class="btn waves-effect waves-light" type="button" id="stockBt" value="stockBt"
-                                name="stockBt">Take Stock
-                                <i class="material-icons right">send</i>
-                            </button>
+
                         </div>
 
                     </div>
@@ -979,65 +806,73 @@ $updateShow = '';
             </div>
 
         </div>
-        <!--======================================================================================================
-                                                  SETTINGS 
-        ======================================================================================================-->
+
+        <!--=================================================================================== 
+                                         CHECK STOCK
+         =====================================================================================-->
         <div id="checkStock" class="col s12">
             <div class="col s12 m12">
                 <div class="card-panel  pink">
                     <span class="white-text" style="text-align: center">
-                        <h5><strong>SETTINGS</strong></h5>
+                        <h5><strong>CHECK STOCK</strong></h5>
                     </span>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col s12 m12">
                     <div class="card-panel">
                         <span style="text-align: center">
-                            <h6><strong>ADD STOCK</strong></h6>
+                            <h6><strong>ALL STOCK</strong></h6>
                             <div class="divider"></div>
                         </span>
                         <div class="row">
                             <div class="input-field col m6 offset-m3">
-                                <input type="text" id="stockDate" name="stockDate" class="datepicker">
-                                <label for="stockDate">Date</label>
+                                <!-- <input type="text" class="datepicker">
+                                <label for="updateDate">Check by Date</label> -->
                             </div>
                         </div>
                         <div class="row">
-                            <div class="input-field col s6">
-                                <input id="stockProductName" name="stockProductName" type="text" class="validate">
-                                <label for="stockProductName">Product Name</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input id="stockQuantity" name="stockQuantity" type="text" class="validate">
-                                <label for="stockQuantity">Quantity</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <input id="stockCostPrice" name="stockCostPrice" type="number" class="validate">
-                                <label for="stockCostPrice">Cost Price</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input id="stockSellingPrice" name="stockSellingPrice" type="number" class="validate">
-                                <label for="stockSellingPrice">Selling Price</label>
-                            </div>
-                        </div>
-                        <div align="center">
-                            <button class="btn waves-effect waves-light" type="button" id="stockBt" value="stockBt"
-                                name="stockBt">Take Stock
-                                <i class="material-icons right">send</i>
-                            </button>
+                            <table class="responsive-table">
+                                <thead>
+                                    <tr>
+                                        <th>s/n</th>
+                                        <th>Product Name</th>
+                                        <th>STOCK QUANTITY</th>
+                                        <th>PRODUCT COST</th>
+                                        <th>QUANTITY REMAINS</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <?php
+                                    $stockCheckShow = '';
+                                    $stockCount = 1;
+                                    $stockCheckSQL = "SELECT productname, itemquantity, itemcost , quantityremain FROM saleproduct";
+                                    $stockCheckResult = mysqli_query($conn, $stockCheckSQL);
+                                    while ($stockCheckRow = mysqli_fetch_array($stockCheckResult)) {
+                                        $stockCheckShow .= '
+                                    <tr>
+                                        <td>' . $stockCount++ . '</td>
+                                        <td>' . $stockCheckRow['productname'] . '</td>
+                                        <td>' . $stockCheckRow['itemquantity'] . '</td>
+                                        <td>' . $stockCheckRow['itemcost'] . '</td>
+                                        <td>' . $stockCheckRow['quantityremain'] . '</td>
+                                    </tr>
+                                ';
+                                    }
+                                    ?>
+                                    <?php echo $stockCheckShow; ?>
+
+                                </tbody>
+                            </table>
+
                         </div>
 
                     </div>
                 </div>
             </div>
-
         </div>
         <!-- ====================================================================================================== -->
-
     </section>
 
 

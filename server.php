@@ -218,7 +218,7 @@ if (isset($_POST['stockBTN'])) {
 
     $addStockSQL = "INSERT INTO stock VALUES('','$stock_date','$stock_productname','$stock_quantity','$stock_costPrice','$stock_sellingprice')";
 
-    $addSaleStockSQL = "INSERT INTO saleproduct VALUES('','','$stock_productname','$stock_quantity','$stock_sellingprice','','','','$stock_quantity')";
+    $addSaleStockSQL = "INSERT INTO saleproduct VALUES('','$stock_productname','$stock_quantity','$stock_sellingprice','','','','$stock_quantity')";
 
     $addStockResult = mysqli_query($conn, $addStockSQL);
     $addSaleStockResult = mysqli_query($conn, $addSaleStockSQL);
