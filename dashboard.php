@@ -885,30 +885,34 @@ $updateShow = '';
                                 <label for="updateStockProductName">Stock Product Name</label>
                             </div>
                             <div class="input-field col s6">
-                                <input id="updateStockQuantity" name="updateStockQuantity" type="text" class="validate">
-                                <label for="updateStockQuantity">Quantity Remain</label>
+                                Quantity Remain
+                                <input id="updateStockQuantityRemain" name="updateStockQuantityRemain" type="text"
+                                    class="validate">
+                                <label for="updateStockQuantityRemain"></label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
-                                <input id="updateStockSellingPrice" name="updateStockSellingPrice" type="number"
+                                <input id="updateStockNewQuantity" name="updateStockNewQuantity" type="number"
                                     class="validate">
-                                <label for="updateStockSellingPrice">Add New Quantity</label>
+                                <label for="updateStockNewQuantity">Add New Quantity</label>
                             </div>
                             <div class="input-field col s6">
+                                Updated Quantity
                                 <input id="updateStockTotalQuantity" name="updateStockTotalQuantity" type="number"
                                     class="validate">
-                                <label for="updateStockTotalQuantity">Updated Quantity</label>
+                                <label for="updateStockTotalQuantity"></label>
                             </div>
                             <div class="input-field col s6">
+                                Selling Price
                                 <input id="updateStockSellingPrice" name="updateStockSellingPrice" type="number"
                                     class="validate">
-                                <label for="updateStockSellingPrice">Selling Price</label>
+                                <label for="updateStockSellingPrice"></label>
                             </div>
                         </div>
                         <div align="center">
                             <button class="btn waves-effect waves-light" type="button" id="updateStockBTN"
-                                value="updateStockBTN" name="updateStockBTN">Take Stock
+                                value="updateStockBTN" name="updateStockBTN">Update Stock
                                 <i class="material-icons right">send</i>
                             </button>
                         </div>

@@ -473,6 +473,65 @@ function calCulateRoomSales() {
 
 }
 
+//==============================================================================================
+//                                      UPDATE STOCK
+//============================================================================================
+const updatestockdate = document.getElementById('updateStockDate');
+const updatestockproductnameChange = document.getElementById('updateStockProductName');
+const updatestockquantityremain = document.getElementById('updateStockQuantityRemain');
+const updatestocknewquantity = document.getElementById('updateStockNewQuantity');
+const updatestocktotalquantity = document.getElementById('updateStockTotalQuantity');
+const updatestocksellingprice = document.getElementById('updateStockSellingPrice');
+const updatestockbtn = document.getElementById('updateStockBTN');
+
+
+updatestockbtn.addEventListener('click', updateNewStock);
+function updateNewStock() {
+    var update_stock_date = updatestockdate.value;
+    var update_stock_productname_Change = updatestockproductnameChange.value;
+    var update_stockquantity_remain = updatestockquantityremain.value;
+    // var update_stock_new_quantity = updatestocknewquantity.value;
+    var update_stock_total_quantity = updatestocktotalquantity.value;
+    var update_stock_selling_price = updatestocksellingprice.value;
+    var update_stock_btn = updatestockbtn.value;
+
+    $.ajax({
+        url: 'server.php',
+        method: 'POST',
+        data: { update_stock_date: update_stock_date, update_stock_productname_Change: update_stock_productname_Change, update_stockquantity_remain: update_stockquantity_remain, update_stock_total_quantity: update_stock_total_quantity, update_stock_selling_price: update_stock_selling_price, update_stock_btn: update_stock_btn },
+        success: function (data) {
+            alert(data);
+        }
+    });
+
+}
+
+
+//========================| SET FIELDS |
+updatestockproductnameChange.addEventListener('change', setQuantitynPrice);
+
+function setQuantitynPrice() {
+    let updateStockproductchange = updatestockproductnameChange.value;
+    $.ajax({
+        url: 'server.php',
+        method: 'POST',
+        data: { updateStockproductchange: updateStockproductchange },
+        dataType: 'json',
+        success: function (data) {
+            updatestockquantityremain.value = data.quantity;
+            updatestocksellingprice.value = data.cost;
+        }
+    });
+}
+
+//===================| ADD NEW QUANTITY
+updatestocknewquantity.addEventListener('input', addNewQuantity);
+function addNewQuantity() {
+    var updatestock_newquanty = parseInt(updatestocknewquantity.value);
+    var updatestock_oldquantity = parseInt(updatestockquantityremain.value);
+    updatestocktotalquantity.value = parseInt(updatestock_newquanty + updatestock_oldquantity);
+}
+
 //=================| QUANTITY CALCULATION 
 // sell_Quantity.addEventListener('keyup', calculateQuantity);
 

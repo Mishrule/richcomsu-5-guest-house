@@ -298,3 +298,40 @@ if (isset($_POST['calProdSaleBTN'])) {
     echo $calProdOutput;
     mysqli_close($conn);
 }
+
+//================================ UPDATE GUEST PRICE FIELD ====================================
+if (isset($_POST['updateStockproductchange'])) {
+    include_once('db.php');
+    $updatestockproductPickArray = array();
+    $updatestockproductPick = mysqli_real_escape_string($conn, $_POST['updateStockproductchange']);
+    //    $updatePrice = mysqli_real_escape_string($conn, $_POST['updatePrice']);
+
+    $updatestockproductPickSQL = "SELECT * FROM saleproduct WHERE productname = '$updatestockproductPick'";
+    $updatestockproductPickResult = mysqli_query($conn, $updatestockproductPickSQL);
+
+    while ($updatestockproductPickRow = mysqli_fetch_array($updatestockproductPickResult)) {
+        $updatestockproductPickArray['cost'] = $updatestockproductPickRow['itemcost'];
+        $updatestockproductPickArray['quantity'] = $updatestockproductPickRow['quantityremain'];
+    }
+    echo json_encode($updatestockproductPickArray);
+    mysqli_close($conn);
+}
+
+//=========================================| UPDATE DATE STOCK |================================
+if (isset($_POST['update_stock_btn'])) {
+    include_once('db.php');
+    $update_stock_date = mysqli_real_escape_string($conn, $_POST['update_stock_date']);
+    $update_stock_productname_Change = mysqli_real_escape_string($conn, $_POST['update_stock_productname_Change']);
+    $update_stockquantity_remain = mysqli_real_escape_string($conn, $_POST['update_stockquantity_remain']);
+    $update_stock_total_quantity = mysqli_real_escape_string($conn, $_POST['update_stock_total_quantity']);
+    $update_stock_selling_price = mysqli_real_escape_string($conn, $_POST['update_stock_selling_price']);
+
+    $update_Stock_SQL = "UPDATE saleproduct SET saledate='$update_stock_date', itemquantity='$update_stock_total_quantity', itemcost='$update_stock_selling_price', quantityremain='$update_stock_total_quantity' WHERE productname='$update_stock_productname_Change'";
+    $update_stock_Result = mysqli_query($conn, $update_Stock_SQL);
+    if ($update_stock_Result) {
+        echo "STOCK updated Successfully";
+    } else {
+        echo "Failed to update STOCK";
+    }
+    mysqli_close($conn);
+}
