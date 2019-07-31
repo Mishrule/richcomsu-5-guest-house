@@ -8,9 +8,9 @@ if (isset($_POST['roomBTN'])) {
     $roomResult = mysqli_query($conn, $roomSQL);
 
     if ($roomResult) {
-        echo "Inserted Successfully";
+        echo "Room Created Successfully";
     } {
-        echo "fail to insert";
+        echo "Sorry Room Failed Create";
     }
 
     mysqli_close($conn);
@@ -21,8 +21,6 @@ if (isset($_POST['roomChange'])) {
     include_once('db.php');
     $outArray = array();
     $roomChange = mysqli_real_escape_string($conn, $_POST['roomChange']);
-    //    $updatePrice = mysqli_real_escape_string($conn, $_POST['updatePrice']);
-
     $updateRoomPriceSQL = "SELECT * FROM room WHERE roomNumber = '$roomChange'";
     $updateRoomPriceResult = mysqli_query($conn, $updateRoomPriceSQL);
 
@@ -33,20 +31,13 @@ if (isset($_POST['roomChange'])) {
     mysqli_close($conn);
 }
 
-
-
-
-
 //============================= UPDATE ROOM PRICE ======================================
 if (isset($_POST['roomUpdateRoomBTN'])) {
     include_once('db.php');
     $roomRoomNumberUpdate = mysqli_real_escape_string($conn, $_POST['roomRoomNumberUpdate']);
     $roomPriceNewUpdate = mysqli_real_escape_string($conn, $_POST['roomPriceNewUpdate']);
-
     $roomUpdateSQL = "UPDATE room SET amount='$roomPriceNewUpdate' WHERE roomNumber='$roomRoomNumberUpdate'";
-    // echo $roomUpdateSQL;
     $roomUpdateResult = mysqli_query($conn, $roomUpdateSQL);
-    // print_r($roomUpdateSQL);
     if ($roomUpdateResult) {
         echo " Room  Price has been updated Successfully";
     } else {
@@ -332,6 +323,26 @@ if (isset($_POST['update_stock_btn'])) {
         echo "STOCK updated Successfully";
     } else {
         echo "Failed to update STOCK";
+    }
+    mysqli_close($conn);
+}
+
+//=====================================================================================================
+//                                      FETCH FROM DATABASES
+//=====================================================================================================
+
+//====================================== FETCH FROM ROOM REGISTRATION
+if (isset($_POST['fetchRoom'])) {
+    include_once('db.php');
+    $fetchRoom = mysqli_real_escape_string($conn, $_POST['fetchRoom']);
+
+
+    $fetchRoomSQL = "SELECT * room ";
+    // echo $fetchRoomSQL;
+    $fetchRoomResult = mysqli_query($conn, $fetchRoomSQL);
+    // print_r($fetchRoomSQL);
+    while ($fetchRoomRow = mysqli_fetch_array($fetchRoomResult)) {
+        echo $fetchRoomRow['roomNumber'];
     }
     mysqli_close($conn);
 }

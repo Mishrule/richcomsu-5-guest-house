@@ -19,7 +19,9 @@ function createRoom() {
             method: 'POST',
             data: { room: room, price: price, roomBTN: roomBTN },
             success: function (data) {
-                alert("Successfully");
+                M.toast({ html: data });
+                fetchFromRoomCreation();
+                // alert(data);
             }
         });
 
@@ -29,6 +31,19 @@ function createRoom() {
 
 }
 
+//====================================== FETCH FROM ROOM REGISTRATION
+function fetchFromRoomCreation() {
+    var fetchRoom = "fetch";
+    $.ajax({
+        url: 'server.php',
+        method: 'POST',
+        data: { fetchRoom: fetchRoom },
+        success: function (data) {
+            console.log(data);
+
+        }
+    });
+}
 //====================================================================
 
 //=============================== UPDATE ROOM ============================
@@ -40,18 +55,18 @@ updateRoomNumber.addEventListener('change', setPriceUpdate); //EVENT HANDLER
 
 function setPriceUpdate() {
     let roomChange = updateRoomNumber.value;
-    // let updatePrice = updateRoomPrice.value;
-    // console.log(roomChange);
+
     $.ajax({
         url: 'server.php',
         method: 'POST',
         data: { roomChange: roomChange },
         dataType: 'json',
         success: function (data) {
-            // console.log(data.price);
+
             if (updateRoomNumber.value !== 'Select a room') {
                 updateRoomPrice.value = data.price;
                 updateRoomPriceBTN.removeAttribute('disabled');
+                fetchFromRoomCreation();
             } else {
                 updateRoomPriceBTN.setAttribute('disabled', true);
             }
