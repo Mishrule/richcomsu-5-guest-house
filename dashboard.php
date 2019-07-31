@@ -325,43 +325,53 @@ $updateShow = '';
             <div class="row">
                 <div class="col s12 m12">
                     <div class="card-panel">
-                        <span style="text-align: center">
-                            <h6><strong>ADD STOCK</strong></h6>
-                            <div class="divider"></div>
-                        </span>
                         <div class="row">
-                            <div class="input-field col m6 offset-m3">
-                                <input type="text" id="stockDate" name="stockDate" class="datepicker">
-                                <label for="stockDate">Date</label>
-                            </div>
+                            <span style="text-align: center">
+                                <h6><strong>ADD STOCK</strong></h6>
+                                <div class="divider"></div>
+                            </span>
+                            <form class="col m12 s12">
+                                <div class="row">
+                                    <div class="input-field col m6 offset-m3">
+                                        <input type="text" id="stockDate" name="stockDate" class="datepicker" required>
+                                        <label for="stockDate">Date</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <input id="stockProductName" name="stockProductName" type="text"
+                                            class="validate" required>
+                                        <label for="stockProductName">Product Name</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input id="stockQuantity" name="stockQuantity" type="text" class="validate"
+                                            required>
+                                        <label for="stockQuantity">Quantity</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <input id="stockCostPrice" name="stockCostPrice" type="number" class="validate"
+                                            required>
+                                        <label for="stockCostPrice">Cost Price</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input id="stockSellingPrice" name="stockSellingPrice" type="number"
+                                            class="validate" required>
+                                        <label for="stockSellingPrice">Selling Price</label>
+                                    </div>
+                                </div>
+                                <div align="center">
+                                    <button class="btn waves-effect waves-light" type="button" id="stockBt"
+                                        value="stockBt" name="stockBt">Take Stock
+                                        <!-- <i class="material-icons right">send</i> -->
+                                    </button>
+                                    <button class="btn waves-effect waves-light red" type="reset" ">RESET
+                                        <!-- <i class=" material-icons right">send</i> -->
+                                    </button>
+                                </div>
+                            </form>
                         </div>
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <input id="stockProductName" name="stockProductName" type="text" class="validate">
-                                <label for="stockProductName">Product Name</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input id="stockQuantity" name="stockQuantity" type="text" class="validate">
-                                <label for="stockQuantity">Quantity</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <input id="stockCostPrice" name="stockCostPrice" type="number" class="validate">
-                                <label for="stockCostPrice">Cost Price</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input id="stockSellingPrice" name="stockSellingPrice" type="number" class="validate">
-                                <label for="stockSellingPrice">Selling Price</label>
-                            </div>
-                        </div>
-                        <div align="center">
-                            <button class="btn waves-effect waves-light" type="button" id="stockBt" value="stockBt"
-                                name="stockBt">Take Stock
-                                <i class="material-icons right">send</i>
-                            </button>
-                        </div>
-
                     </div>
                 </div>
             </div>

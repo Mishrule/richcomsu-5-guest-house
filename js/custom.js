@@ -358,15 +358,19 @@ function addStock() {
     var stock_sellingprice = stock_SellingPrice.value;
     var stock_costPrice = stock_CostPrice.value;
     var stockBTN = stock_Bt.value;
+    if (stock_date !== '' && stock_productname !== '' && stock_quantity !== '' && stock_sellingprice !== '' && stock_costPrice !== '') {
+        $.ajax({
+            url: 'server.php',
+            method: 'POST',
+            data: { stock_date: stock_date, stock_productname: stock_productname, stock_quantity: stock_quantity, stock_sellingprice: stock_sellingprice, stockBTN: stockBTN, stock_costPrice: stock_costPrice },
+            success: function (data) {
+                alert(data);
+            }
+        });
+    } else {
+        alert("PLEASE FIELDS CAN'T BE EMPTY");
+    }
 
-    $.ajax({
-        url: 'server.php',
-        method: 'POST',
-        data: { stock_date: stock_date, stock_productname: stock_productname, stock_quantity: stock_quantity, stock_sellingprice: stock_sellingprice, stockBTN: stockBTN, stock_costPrice: stock_costPrice },
-        success: function (data) {
-            alert(data);
-        }
-    });
 
 }
 
