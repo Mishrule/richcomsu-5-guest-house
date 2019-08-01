@@ -181,16 +181,24 @@ function guestRegistration() {
     var guestStatus = gueststatus.value;
     var guestRegistration = registration.value;
 
-    $.ajax({
-        url: 'server.php',
-        method: 'POST',
-        data: {
-            guestfullName: guestfullName, guestRoom: guestRoom, guestCompanyName: guestCompanyName, guestArrivalDate: guestArrivalDate, guestDepartureDate: guestDepartureDate, guestAddress: guestAddress, guestEmail: guestEmail, guestContact: guestContact, guestNationality: guestNationality, guestModeOfPayment: guestModeOfPayment, guestNumberOfGuest: guestNumberOfGuest, guestDailyRate: guestDailyRate, guestDaysSpend: guestDaysSpend, guestTotalPayment: guestTotalPayment, guestAdvanPayment: guestAdvanPayment, guestIdNum: guestIdNum, guestReceiptNum: guestReceiptNum, guestStaff: guestStaff, guestStatus: guestStatus, guestRegistration: guestRegistration
-        },
-        success: function (data) {
-            alert(data);
-        }
-    });
+    if (guestfullName !== '' && guestRoom !== '' && guestCompanyName !== '' && guestArrivalDate !== '' && guestDepartureDate !== '' && guestAddress !== '' && guestEmail !== '' && guestContact !== '' && guestNationality !== '' && guestModeOfPayment !== '' && guestNumberOfGuest !== '' && guestDailyRate !== '' && guestDaysSpend !== '' && guestTotalPayment !== '' && guestAdvanPayment !== '' && guestIdNum !== '' && guestReceiptNum !== '' && guestStaff !== '' && guestStatus !== '') {
+
+        $.ajax({
+            url: 'server.php',
+            method: 'POST',
+            data: {
+                guestfullName: guestfullName, guestRoom: guestRoom, guestCompanyName: guestCompanyName, guestArrivalDate: guestArrivalDate, guestDepartureDate: guestDepartureDate, guestAddress: guestAddress, guestEmail: guestEmail, guestContact: guestContact, guestNationality: guestNationality, guestModeOfPayment: guestModeOfPayment, guestNumberOfGuest: guestNumberOfGuest, guestDailyRate: guestDailyRate, guestDaysSpend: guestDaysSpend, guestTotalPayment: guestTotalPayment, guestAdvanPayment: guestAdvanPayment, guestIdNum: guestIdNum, guestReceiptNum: guestReceiptNum, guestStaff: guestStaff, guestStatus: guestStatus, guestRegistration: guestRegistration
+            },
+            success: function (data) {
+                alert(data);
+            }
+        });
+
+    } else {
+        alert("PLEASE FILL ALL THE FORMS");
+
+    }
+
 
 }
 
