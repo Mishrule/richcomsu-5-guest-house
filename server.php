@@ -159,24 +159,24 @@ if (isset($_POST['gone_out'])) {
     mysqli_close($conn);
 }
 //===============================|CALCULATE ROOM SYNTAX |====================================================
-if (isset($_POST['calRoomSaleBTN'])) {
+if (isset($_POST['cal_Room_Sale_BTN'])) {
     include_once('db.php');
-    $calRoomOutput = '';
-    $calFromDate = mysqli_real_escape_string($conn, $_POST['calFromDate']);
-    $calToDate = mysqli_real_escape_string($conn, $_POST['calToDate']);
+    $calRoomShowOutput = '';
+    $calFromDate_ = mysqli_real_escape_string($conn, $_POST['calFromDate']);
+    $calToDate_ = mysqli_real_escape_string($conn, $_POST['calToDate']);
 
-    $calRoomSaleSQL = "SELECT SUM(totalpayment) AS Total FROM guestregistration WHERE arrivaldate BETWEEN '$calFromDate' AND '$calToDate'";
+    $calRoomSaleSQL_ = "SELECT SUM(saleamount) AS TotalRoom FROM roomsales WHERE saledate BETWEEN '$calFromDate_' AND '$calToDate_'";
 
-    $calRoomSaleResult = mysqli_query($conn, $calRoomSaleSQL);
+    $calRoomSaleResult_ = mysqli_query($conn, $calRoomSaleSQL_);
 
-    if (mysqli_num_rows($calRoomSaleResult) > 0) {
-        while ($calRoomSaleRow = mysqli_fetch_array($calRoomSaleResult)) {
-            $calRoomOutput = $calRoomSaleRow['Total'];
+    if (mysqli_num_rows($calRoomSaleResult_) > 0) {
+        while ($cal_RoomSaleRow = mysqli_fetch_array($calRoomSaleResult_)) {
+            $calRoomShowOutput = $cal_RoomSaleRow['TotalRoom'];
         }
     } else {
-        $calRoomOutput = "Sorry Not in Range";
+        $calRoomShowOutput = "Sorry Not in Range";
     }
-    echo $calRoomOutput;
+    echo $calRoomShowOutput;
     mysqli_close($conn);
 }
 
@@ -275,7 +275,7 @@ if (isset($_POST['calProdSaleBTN'])) {
     $calProdFromDate = mysqli_real_escape_string($conn, $_POST['calProdFromDate']);
     $calProdToDate = mysqli_real_escape_string($conn, $_POST['calProdToDate']);
 
-    $calProdSaleSQL = "SELECT SUM(itemcost) AS Total FROM dailyitemsales WHERE saledate BETWEEN '$calProdFromDate' AND '$calProdToDate'";
+    $calProdSaleSQL = "SELECT SUM(payment) AS Total FROM dailyitemsales WHERE saledate BETWEEN '$calProdFromDate' AND '$calProdToDate'";
 
     $calProdSaleResult = mysqli_query($conn, $calProdSaleSQL);
 
@@ -346,3 +346,119 @@ if (isset($_POST['fetchRoom'])) {
     }
     mysqli_close($conn);
 }
+
+//===============================|CALCULATE PRODUCT SALES |====================================================
+if (isset($_POST['view_guestBTN'])) {
+    include_once('db.php');
+
+    $view_guestOutput = '';
+    $view_guestgateFrom = mysqli_real_escape_string($conn, $_POST['view_guestgateFrom']);
+    $view_guestgateTo = mysqli_real_escape_string($conn, $_POST['view_guestgateTo']);
+
+    // $view_guestSaleSQL = "SELECT * FROM guestregistration WHERE arrivaldate BETWEEN '$view_guestgateFrom' AND '$view_guestgateTo'";
+    $view_guestSaleSQL = "SELECT * FROM guestregistration ";
+
+    $view_guestSaleResult = mysqli_query($conn, $view_guestSaleSQL);
+    $view_guest_count = 1;
+    $view_guestOutputArray = array();
+    if (mysqli_num_rows($view_guestSaleResult) > 0) {
+        while ($view_guestSaleRow = mysqli_fetch_array($view_guestSaleResult)) {
+
+            $view_guestOutputArray['count_'] = $view_guest_count;
+            $view_guestOutputArray['fullname_'] = $view_guestSaleRow['fullname'];
+            $view_guestOutputArray[' guestroom_'] = $view_guestSaleRow['guestroom'];
+            $view_guestOutputArray['contact_'] = $view_guestSaleRow['contact'];
+            $view_guestOutputArray['arrivaldate_'] = $view_guestSaleRow['arrivaldate'];
+            $view_guestOutputArray['departureDate_'] = $view_guestSaleRow['departureDate'];
+            $view_guestOutputArray[' modeofpayment_'] = $view_guestSaleRow['modeofpayment'];
+            $view_guestOutputArray['totalpayment_'] = $view_guestSaleRow['totalpayment'];
+            $view_guestOutputArray['status_'] = $view_guestSaleRow['status'];
+
+            $view_guest_count++;
+        }
+    }
+
+    echo json_encode($view_guestOutputArray);
+    mysqli_close($conn);
+}
+
+// ===========================================SHOW REGISTRATION =======================================================
+
+if(isset($_POST['show'])){
+    include_once('db.php');
+    $showDisp='';
+    $fromDate = mysqli_real_escape_string($conn, $_POST['fromDate']);
+    $toDate = mysqli_real_escape_string($conn, $_POST['toDate']);
+    $showCount = 1;
+    $showDisp .= '
+        <table>
+        <thead>
+          <tr>
+              <th>SN</th>
+              <th>Name</th>
+              <th>Room Number</th>
+              <th>Number of Guest</th>
+              <th>Arrival Date</th>
+              <th>Departure Date</th>
+              <th>Days Spend</th>
+              <th>Total Payment</th>
+          </tr>
+        </thead>
+
+        <tbody>
+         
+    ';
+
+    $showSalesSQL = "SELECT * FROM guestregistration WHERE arrivaldate BETWEEN '$fromDate' AND '$toDate' ";
+    // print_r($showSalesSQL);
+    $showSalesResult = mysqli_query($conn, $showSalesSQL);
+    if(mysqli_num_rows($showSalesResult)>0){
+        while($showSalesRow = mysqli_fetch_array($showSalesResult)){
+            $showDisp .='
+                <tr>
+                    <td>'.$showCount++.'</td>
+                    <td>'.$showSalesRow['fullname'].'</td>
+                    <td>'.$showSalesRow['guestroom'].'</td>
+                    <td>'.$showSalesRow['numberofguest'].'</td>
+                    <td>'.$showSalesRow['arrivaldate'].'</td>
+                    <td>'.$showSalesRow['departureDate'].'</td>
+                    <td>'.$showSalesRow['daysspend'].'</td>
+                    <td>'.$showSalesRow['totalpayment'].'</td>
+                </tr>
+            ';
+        }
+    }else{
+        $showDisp .='
+            <tr>
+                <td colspan="8"><marquee>Sorry there is no guest yet</marquee></td>
+            </tr>
+        ';
+    }
+    $showDisp .='
+        </tbody>
+      </table>
+    ';
+
+    echo $showDisp;
+}
+
+// =================================================| USER ACCOUNT | ==============================================
+
+     if(isset($_POST['logBTN'])){
+         include_once('db.php');
+          $accountUserName = mysqli_real_escape_string($conn, $_POST['username']);
+          $accountPassword = mysqli_real_escape_string($conn, $_POST['password']);
+          $accountContact = mysqli_real_escape_string($conn, $_POST['contact']);
+          $accountSQL = "INSERT INTO useraccount VALUES('','$accountUserName','$accountPassword','$accountContact')";
+
+        $accountResult = mysqli_query($conn, $accountSQL);
+
+        if($accountResult){
+           echo "USER CREATED SUCCESSFULLY";
+        }else{
+            echo  mysqli_error($conn);
+        }
+
+     }
+                                                           
+?>

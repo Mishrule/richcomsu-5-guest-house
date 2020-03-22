@@ -305,30 +305,37 @@ function addGoneOut() {
 }
 
 //===============================|CALCULATE ROOM SYNTAX |====================================================
-const calFrom = document.getElementById('calFrom');
-const calTo = document.getElementById('calTo');
-const calToRoomSaleOutput = document.getElementById('calToRoomSale');
-const calRoomSale = document.getElementById('calRoomSale');
+const cal_From = document.getElementById('calFrom');
+const cal_To = document.getElementById('calTo');
+const calRoomSaleOutput = document.getElementById('calToRoomSale_');
+const calRoomSale = document.getElementById('calRoomSaleBTN');
 
 calRoomSale.addEventListener('click', calCulateRoomSales);
 function calCulateRoomSales() {
-    var calFromDate = calFrom.value;
-    var calToDate = calTo.value;
-    var calRoomSaleBTN = calRoomSale.value;
+    var calFromDate = cal_From.value;
+    var calToDate = cal_To.value;
+    var cal_Room_Sale_BTN = calRoomSale.value;
+    console.log("From ", calFromDate, "TO ", calToDate, "Button ", cal_Room_Sale_BTN);
 
     $.ajax({
         url: 'server.php',
         method: 'POST',
-        data: { calFromDate: calFromDate, calToDate: calToDate, calRoomSaleBTN: calRoomSaleBTN },
+        data: { calFromDate: calFromDate, calToDate: calToDate, cal_Room_Sale_BTN: cal_Room_Sale_BTN },
         success: function (data) {
-            calToRoomSaleOutput.innerText = data;
+            if (data !== '') {
+                calRoomSaleOutput.innerText = data;
+            } else {
+                calRoomSaleOutput.innerText = "Sorry Not in Range try different Date";
+            }
+
+            // console.log(data);
         }
     });
 
 }
 
 
-//=====================================| ROOM SALE |===========================================
+//=====================================|DAILY ROOM SALE |===========================================
 const recordSalesDate = document.getElementById('recordDailySalesDate');
 const dailySalesAmount = document.getElementById('recordDailySalesAmount');
 const dailySales_BTN = document.getElementById('dailySalesBTN');
@@ -339,15 +346,20 @@ function logSale() {
     var dailyAmountSales = dailySalesAmount.value;
     var dailyBTNSale = dailySales_BTN.value;
     // console.log(roomSaleDate, dailyAmountSales, dailyBTNSale);
+    if (roomSaleDate !== '' && dailyAmountSales !== '') {
+        $.ajax({
+            url: 'server.php',
+            method: 'POST',
+            data: { roomSaleDate: roomSaleDate, dailyAmountSales: dailyAmountSales, dailyBTNSale: dailyBTNSale },
+            success: function (data) {
+                alert(data);
+            }
+        });
+    } else {
+        alert("PLEASE FILL ALL FIELDS");
+    }
 
-    $.ajax({
-        url: 'server.php',
-        method: 'POST',
-        data: { roomSaleDate: roomSaleDate, dailyAmountSales: dailyAmountSales, dailyBTNSale: dailyBTNSale },
-        success: function (data) {
-            alert(data);
-        }
-    });
+
 }
 
 //=============================================| STOCK |============================================
@@ -404,8 +416,13 @@ function showQuantity() {
         dataType: 'json',
         success: function (data) {
             // console.log(data);
-            sell_QuantityRemains.value = data.quantity;
+
             sell_ItemCost.value = data.cost;
+            if (data !== '') {
+                sell_QuantityRemains.value = data.quantity;
+            } else {
+                sell_QuantityRemains.value = "Sales Not in Range Try different data";
+            }
         }
     });
 
@@ -483,8 +500,8 @@ const calProdFrom = document.getElementById('calProductFrom');
 const calProdTo = document.getElementById('calProductTo');
 const calProdBTN = document.getElementById('calProductSaleBTN');
 
-calProdBTN.addEventListener('click', calCulateRoomSales);
-function calCulateRoomSales() {
+calProdBTN.addEventListener('click', calCulateProductSales);
+function calCulateProductSales() {
     var calProdFromDate = calProdFrom.value;
     var calProdToDate = calProdTo.value;
     var calProdSaleBTN = calProdBTN.value;
@@ -495,6 +512,7 @@ function calCulateRoomSales() {
         data: { calProdFromDate: calProdFromDate, calProdToDate: calProdToDate, calProdSaleBTN: calProdSaleBTN },
         success: function (data) {
             calProdOutput.innerText = data;
+            console.log(data);
         }
     });
 
@@ -522,14 +540,20 @@ function updateNewStock() {
     var update_stock_selling_price = updatestocksellingprice.value;
     var update_stock_btn = updatestockbtn.value;
 
-    $.ajax({
-        url: 'server.php',
-        method: 'POST',
-        data: { update_stock_date: update_stock_date, update_stock_productname_Change: update_stock_productname_Change, update_stockquantity_remain: update_stockquantity_remain, update_stock_total_quantity: update_stock_total_quantity, update_stock_selling_price: update_stock_selling_price, update_stock_btn: update_stock_btn },
-        success: function (data) {
-            alert(data);
-        }
-    });
+    if (update_stockquantity_remain !== '' && update_stock_total_quantity !== '' && update_stock_selling_price !== '') {
+        $.ajax({
+            url: 'server.php',
+            method: 'POST',
+            data: { update_stock_date: update_stock_date, update_stock_productname_Change: update_stock_productname_Change, update_stockquantity_remain: update_stockquantity_remain, update_stock_total_quantity: update_stock_total_quantity, update_stock_selling_price: update_stock_selling_price, update_stock_btn: update_stock_btn },
+            success: function (data) {
+                alert(data);
+            }
+        });
+
+    } else {
+        alert("FIELDS CAN'T BE EMPTY");
+    }
+
 
 }
 
@@ -558,6 +582,46 @@ function addNewQuantity() {
     var updatestock_oldquantity = parseInt(updatestockquantityremain.value);
     updatestocktotalquantity.value = parseInt(updatestock_newquanty + updatestock_oldquantity);
 }
+
+// =====================================| VIEW GUEST REGISTRATION INFORMATION |================================
+/*window.onload = function () {
+    var viewguestgateFrom = document.getElementById('viewGuestDateFrom');
+    var viewguestgateTo = document.getElementById('viewGuestDateTo');
+    var viewguestBTN = document.getElementById('viewGuestBTN');
+    var guest_infoOutput = document.getElementById('guestInfoOutput');
+
+    viewguestBTN.addEventListener('click', showGuestInformation);
+    function showGuestInformation() {
+        var view_guestgateFrom = viewguestgateFrom.value;
+        var view_guestgateTo = viewguestgateTo.value;
+        var view_guestBTN = viewguestBTN.value;
+        // var guest_infoOutput = guestinfoOutput.value;
+        console.log("From ", view_guestgateFrom, "To ", view_guestgateTo, "BTN ", view_guestBTN);
+
+        $.ajax({
+            url: 'server.php',
+            method: 'POST',
+            data: { view_guestgateFrom: view_guestgateFrom, view_guestgateTo: view_guestgateTo, view_guestBTN: view_guestBTN },
+            dataType: 'json',
+            success: function (data) {
+                // guestinfoOutput.innerHTML = data;
+
+                console.log(data.count_);
+                console.log(data.fullname_);
+                console.log(data.guestroom_);
+                console.log(data.contact_);
+                console.log(data.arrivaldate_);
+                console.log(data.departureDate_);
+                console.log(data.modeofpayment_);
+                console.log(data.totalpayment_);
+                console.log(data.status_);
+                guest_infoOutput.innerText += data.count;
+
+            }
+        });
+    }
+}
+*/
 
 //=================| QUANTITY CALCULATION 
 // sell_Quantity.addEventListener('keyup', calculateQuantity);

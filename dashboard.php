@@ -1,6 +1,8 @@
 <?php
 include_once('db.php');
+require_once('session.php');
 $updateShow = '';
+$logMsg = '';
 
 ?>
 
@@ -24,6 +26,9 @@ $updateShow = '';
                     HOUSE</span> </a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="#">Logout</a></li>
+                <li>
+                    <p><?php echo "Welcome: ".$login_session;?></p>
+                </li>
             </ul>
 
             <ul id="nav-mobile" class="sidenav">
@@ -402,20 +407,23 @@ $updateShow = '';
                                 <div align="center">
                                     <h5>Total Sales</h5>
                                     <div class="divider"></div>
-                                    <div id="calToRoomSale" style="font-size:20px; color: red; font-weight:bold;"></div>
+                                    <div id="calToRoomSale_" style="font-size:20px; color: red; font-weight:bold;">
+                                    </div>
                                 </div>
                             </div>
                             <div class="input-field col s6">
                                 <input id="calFrom" name="calFrom" type="text" class="datepicker">
-                                <label for="calFrom">Calculate From</label>
+                                <label for="calFrom">Calculate Room From</label>
                             </div>
                             <div class="input-field col s6">
                                 <input id="calTo" name="calTo" type="text" class="datepicker">
-                                <label for="calTo">Calculate To</label>
+                                <label for="calTo">Calculate Room To</label>
                             </div>
                             <div class="input-field col s12">
-                                <button type="button" class="btn waves-effect waves-teal col s12 m12" id="calRoomSale"
-                                    name="calRoomSale " value="calRoomSale" style="width: 100%;">Calculate</button>
+                                <button type="button" class="btn waves-effect waves-teal col s12 m12"
+                                    id="calRoomSaleBTN" name="calRoomSaleBTN" value="calRoomSaleBTN"
+                                    style="width: 100%;">Calculate ROOM FOR A
+                                    PERIOD</button>
                             </div>
                         </div>
 
@@ -455,101 +463,107 @@ $updateShow = '';
                             <h6><strong>SELL A PRODUCT</strong></h6>
                             <div class="divider"></div>
                         </span>
-                        <div class="row">
-                            <div class="input-field col m6 offset-m3">
-                                <input type="text" id="sellDate" name="sellDate" class="datepicker">
-                                <label for="sellDate">Date</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s6">
-
-                                <select id="sellProductName" name="sellProductName">
-                                    <option>Select a Product</option>
-                                    <?php
-
-                                    $sellProductShow = '';
-                                    $sellProductSQL = "SELECT * FROM saleproduct";
-                                    $sellProductResult = mysqli_query($conn, $sellProductSQL);
-                                    if ($sellProductNumRoll = mysqli_num_rows($sellProductResult) > 0) {
-                                        while ($sellProductRow = mysqli_fetch_array($sellProductResult)) {
-                                            $sellProductShow .= '<option value="' . $sellProductRow['productname'] . '">' . $sellProductRow['productname'] . '</option>';
-                                        }
-                                    } else { }
-                                    ?>
-
-                                    <?php echo $sellProductShow; ?>
-
-
-                                </select>
-                                <label for="sellProductName">Product</label>
-                            </div>
-                            <div class="input-field col s12 m6">
-                                <select id="sellQuantity" name="sellQuantity">
-                                    <option>Item Quantity</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2 </option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                    <option value="13">13</option>
-                                    <option value="14">14</option>
-                                    <option value="15">15</option>
-                                    <option value="16">16</option>
-                                    <option value="17">17</option>
-                                    <option value="18">18</option>
-                                    <option value="19">19</option>
-                                    <option value="20">20</option>
-                                </select>
-                                <label for="sellQuantity">Item Quantity</label>
-
-                            </div>
+                        <form>
                             <div class="row">
-                                <div class="input-field col s4 m4">
-                                    Item Cost
-                                    <input id="sellItemCost" name="sellItemCost" type="number" class="validate"
-                                        disabled>
-                                    <label for="sellItemCost"> </label>
-                                </div>
-                                <div class="input-field col s4 m4">
-                                    Payment
-                                    <input id="sellAmountPayment" name="sellAmountPayment" type="number"
-                                        class="validate" disabled>
-                                    <label for="sellAmountPayment"></label>
-                                </div>
-
-                                <div class="input-field col s4 m4">
-                                    <input id="sellAmountPaid" name="sellAmountPaid" type="number" class="validate">
-                                    <label for="sellAmountPaid">Amount Paid</label>
+                                <div class="input-field col m6 offset-m3">
+                                    <input type="text" id="sellDate" name="sellDate" class="datepicker">
+                                    <label for="sellDate">Date</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s6">
-                                    Balance
-                                    <input id="sellBalance" name="sellBalance" type="number" class="validate" disabled>
-                                    <label for="sellBalance"></label>
-                                </div>
-                                <div class="input-field col s6">
-                                    Quantity Remains
-                                    <input id="sellQuantityRemains" name="sellQuantityRemains" type="number"
-                                        class="validate" disabled>
-                                    <label for="sellQuantityRemains"></label>
-                                </div>
-                            </div>
-                            <div align="center">
-                                <button class="btn waves-effect waves-light" type="button" id="sellButton"
-                                    name="sellButton" value="sellButton">Sell
-                                    <!-- <i class="material-icons right">send</i> -->
-                                </button>
-                            </div>
 
-                        </div>
+                                    <select id="sellProductName" name="sellProductName">
+                                        <option>Select a Product</option>
+                                        <?php
+
+                                        $sellProductShow = '';
+                                        $sellProductSQL = "SELECT * FROM saleproduct";
+                                        $sellProductResult = mysqli_query($conn, $sellProductSQL);
+                                        if ($sellProductNumRoll = mysqli_num_rows($sellProductResult) > 0) {
+                                            while ($sellProductRow = mysqli_fetch_array($sellProductResult)) {
+                                                $sellProductShow .= '<option value="' . $sellProductRow['productname'] . '">' . $sellProductRow['productname'] . '</option>';
+                                            }
+                                        } else { }
+                                        ?>
+
+                                        <?php echo $sellProductShow; ?>
+
+
+                                    </select>
+                                    <label for="sellProductName">Product</label>
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    <select id="sellQuantity" name="sellQuantity">
+                                        <option>Item Quantity</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2 </option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                        <option value="16">16</option>
+                                        <option value="17">17</option>
+                                        <option value="18">18</option>
+                                        <option value="19">19</option>
+                                        <option value="20">20</option>
+                                    </select>
+                                    <label for="sellQuantity">Item Quantity</label>
+
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s4 m4">
+                                        Item Cost
+                                        <input id="sellItemCost" name="sellItemCost" type="number" class="validate"
+                                            disabled>
+                                        <label for="sellItemCost"> </label>
+                                    </div>
+                                    <div class="input-field col s4 m4">
+                                        Payment
+                                        <input id="sellAmountPayment" name="sellAmountPayment" type="number"
+                                            class="validate" disabled>
+                                        <label for="sellAmountPayment"></label>
+                                    </div>
+
+                                    <div class="input-field col s4 m4">
+                                        <input id="sellAmountPaid" name="sellAmountPaid" type="number" class="validate">
+                                        <label for="sellAmountPaid">Amount Paid</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        Balance
+                                        <input id="sellBalance" name="sellBalance" type="number" class="validate"
+                                            disabled>
+                                        <label for="sellBalance"></label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        Quantity Remains
+                                        <input id="sellQuantityRemains" name="sellQuantityRemains" type="number"
+                                            class="validate" disabled>
+                                        <label for="sellQuantityRemains"></label>
+                                    </div>
+                                </div>
+                                <div align="center">
+                                    <button class="btn waves-effect waves-light" type="button" id="sellButton"
+                                        name="sellButton" value="sellButton">Sell
+                                        <!-- <i class="material-icons right">send</i> -->
+                                    </button>&nbsp; &nbsp;
+                                    <button class="btn waves-effect waves-light red" type="reset">Reset
+                                        <!-- <i class="material-icons right">send</i> -->
+                                    </button>
+                                </div>
+
+                            </div>
+                        </form>
                     </div>
 
                 </div>
@@ -617,7 +631,7 @@ $updateShow = '';
                                     <div class="input-field col s12">
                                         <button type="button" class="btn waves-effect waves-teal col s12 m12"
                                             id="calProductSaleBTN" name="calProductSaleBTN " value="calProductSaleBTN"
-                                            style="width: 100%;">Calculate Sale</button>
+                                            style="width: 100%;">Calculate Product Sale</button>
                                     </div>
                                 </div>
                             </div>
@@ -626,8 +640,48 @@ $updateShow = '';
                 </div>
 
             </div>
+            <!-- Guest info -->
+            <!-- <div class="row">
+                <div class="col m12 s12">
+                    <div class="card-panel">
+                        <div class="row">
+                            <div align="center">
+                                <h5>VIEW GUESTS INFO</h5>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <input id="viewGuestDateFrom" name="viewGuestDateFrom" type="text"
+                                        class="datepicker">
+                                    <label for="viewGuestDateFrom">View Guest From Date</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="viewGuestDateTo" name="viewGuestDateTo" type="text" class="datepicker">
+                                    <label for="viewGuestDateTo">View Guest To Date</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div align="center">
+                                    <div class="input-field col s12">
+                                        <button type="button" class="btn waves-effect waves-teal col s12 m12"
+                                            id="viewGuestBTN" name="viewGuestBTN " value="viewGuestBTN">View Registered
+                                            Guest</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" row">
+                                <div class="col s12 m12">
+                                    <div class="guestInfoOutput"></div>
 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <!-- Guest Info Ends -->
         </div>
+
         <!--====================================================================================================== 
                                                  UPDATE STOCK 
         ======================================================================================================-->
@@ -704,7 +758,10 @@ $updateShow = '';
                         <div align="center">
                             <button class="btn waves-effect waves-light" type="button" id="updateStockBTN"
                                 value="updateStockBTN" name="updateStockBTN">Update Stock
-                                <i class="material-icons right">send</i>
+                                <!-- <i class="material-icons right">send</i> -->
+                            </button>&nbsp; &nbsp;
+                            <button class="btn waves-effect waves-light red" type="reset">Reset
+                                <!-- <i class="material-icons right">send</i> -->
                             </button>
                         </div>
 
@@ -826,7 +883,53 @@ $updateShow = '';
                                                     </div>
                                             </div>
                                             <div class="row">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h5 style="text-align:center">USER ACCOUNT</h5>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <!-- <div class="row"> -->
+                                                        <form class="col s12" method="POST"
+                                                            action="<?php $_PHP_SELF; ?>">
+                                                            <div class="row">
+                                                                <div class="input-field col s12">
+                                                                    <i class="material-icons prefix">account_circle</i>
+                                                                    <input id="username" name="username" type="text"
+                                                                        class="validate">
+                                                                    <label for="username">Username</label>
+                                                                </div>
+                                                                <div class="input-field col s12">
+                                                                    <i class="material-icons prefix">lock</i>
+                                                                    <input id="password" name="password" type="password"
+                                                                        class="validate">
+                                                                    <label for="password">Password</label>
+                                                                </div>
+                                                                <div class="input-field col s12">
+                                                                    <i class="material-icons prefix">phone</i>
+                                                                    <input id="accountContact" name="accountContact"
+                                                                        type="number" class="validate">
+                                                                    <label for="accountContact">Contact</label>
+                                                                </div>
+                                                            </div>
+                                                            <div align="center"><button type="button"
+                                                                    class="btn waves-effect waves-teal center"
+                                                                    id="loginBtn" name="loginBtn "
+                                                                    value="loginBtn ">CREATE USER</button>
 
+                                                                <a href="viewUsers.php" id="previewBTN"
+                                                                    name="previewBTN " value="previewBTN ">VIEW
+                                                                    REGISTERED USERS</a>
+                                                            </div>
+
+
+                                                            <div class="row">
+
+                                                            </div>
+
+                                                        </form>
+                                                        <!-- </div> -->
+                                                    </div>
+                                                </div>
                                             </div>
 
                                         </div>
@@ -925,7 +1028,55 @@ $updateShow = '';
         $('.tabs').tabs();
         $('select').formSelect();
         $('.datepicker').datepicker();
+
+        $('#loginBtn').click(function() {
+            var username = $('#username').val();
+            var password = $('#password').val();
+            var contact = $('#accountContact').val();
+            var logBTN = $('#loginBtn').val();
+            // alert(username);
+            // alert(password);
+            // alert(contact);
+            // alert(logBTN);
+            if (username === '') {
+                alert("Username fields can't be empty");
+            } else if (password === '') {
+                alert("Password fields can't be empty");
+            } else if (contact == 0) {
+                alert("Contact fields can't be empty");
+            } else {
+                $.ajax({
+                    url: 'server.php',
+                    method: 'POST',
+                    data: {
+                        username,
+                        password,
+                        contact,
+                        logBTN
+                    },
+                    success: function(data) {
+                        alert(data);
+                        $('#username').val('');
+                        $('#password').val('');
+                        $('#accountContact').val('');
+
+                    }
+                });
+            }
+
+
+
+        });
+
+
     });
+    // $(document).on('click', '#viewguestBTN', function() {
+    //     var viewguestgateFrom = $('#viewGuestDateFrom').val();
+    //     var viewguestgateTo = $('#viewGuestDateTo').val();
+    //     var viewguestBTN = $('#viewGuestBTN').val();
+    //     // var guest_infoOutput = $('#guestInfoOutput').val();
+    //     console.log(viewguestgateFrom, viewguestgateTo, viewguestBTN);
+    // });
     </script>
 </body>
 

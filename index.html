@@ -4,7 +4,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
-  <title>Starter Template - Materialize</title>
+  <title>Richcomsu 5 | Index</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -17,7 +17,7 @@
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">RICHCOMSU 5 <span>GUEST
           HOUSE</span> </a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#">Sign In</a></li>
+        <!-- <li><a href="#">Sign In</a></li> -->
       </ul>
 
       <ul id="nav-mobile" class="sidenav">
@@ -33,10 +33,13 @@
         <marquee>RichComsu 5 Guest House</marquee>
       </h1>
       <div class="row center">
-        <h5 class="header col s12 light">Put time here</h5>
+        <!-- <h5 class="header col s12 light">Put time here</h5> -->
+        <h1 class="text-uppercase col-10" style="font-size:60px; color: #4d0000;">
+          <strong id="date_time"></strong>
+        </h1>
       </div>
       <div class="row center">
-        <a href="login.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
+        <a href="login.php" id="download-button" class="btn-large waves-effect waves-light orange">SIGN IN</a>
       </div>
       <br><br>
 
@@ -89,7 +92,8 @@
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
-
+  <script src="js/date_time.js"></script>
+  <script type="text/javascript">window.onload = date_time('date_time');</script>
 </body>
 
 </html>
